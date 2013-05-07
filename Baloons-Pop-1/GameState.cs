@@ -42,7 +42,7 @@ namespace PoppingBaloons
             }
             else if (command == "restart")
             {
-                restart();
+                Restart();
             }
             else if (command == "top")
             {
@@ -55,10 +55,10 @@ namespace PoppingBaloons
 
                 string[] coordinates = command.Split(' ');
 
-                bool first = int.TryParse(coordinates[0], out row);
-                bool second = int.TryParse(coordinates[1], out col);
+                bool isRowNumber = int.TryParse(coordinates[0], out row);
+                bool isColNumber = int.TryParse(coordinates[1], out col);
 
-                if (first && second)
+                if (isRowNumber && isColNumber)
                 {
                     SendCommand(row, col);//sends command to the baloonsState game holder
                 }
@@ -78,7 +78,7 @@ namespace PoppingBaloons
             }
             else
             {
-                end = currentBalloonState.popBaloon(row + 1, col + 1);//if this turn ends the game, try to update the scoreboard
+                end = currentBalloonState.PopBaloon(row, col);//if this turn ends the game, try to update the scoreboard
             }
 
             if (end)
@@ -86,12 +86,12 @@ namespace PoppingBaloons
                 Console.WriteLine("Congratulations!!You popped all the baloons in" + currentBalloonState.turnCount + "moves!");
             }
             
-            updateScoreboard();
+            //UpdateScoreboard();
             
-            restart();
+            //Restart();
         }
 
-        private void updateScoreboard()
+        private void UpdateScoreboard()
         {
             Action<int> add = count => //function to get the player name and add a tuple to the scoreboard
             {
@@ -120,7 +120,7 @@ namespace PoppingBaloons
             currentBalloonState = new BaloonsState();
         }
 
-        private void restart()
+        private void Restart()
         {
             currentBalloonState = new BaloonsState();
         }
