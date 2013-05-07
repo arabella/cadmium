@@ -18,7 +18,7 @@ namespace PoppingBaloons
             GameState game=new GameState();
             while(true)
             {
-                game.executeCommand(Console.ReadLine());
+                game.ExecuteCommand(Console.ReadLine());
             }
             
             

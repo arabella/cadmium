@@ -5,13 +5,13 @@ using System.Text;
 
 namespace PoppingBaloons
 {
-    class baloonsState
+    class BaloonsState
     {
         int[,] balloon;
         public int turnCount;//the turn counter
         public readonly static int Rows = 6;
         public readonly static int Cols = 10;
-        public baloonsState()
+        public BaloonsState()
         {
             turnCount = 0;
             //int rows = 6;
@@ -26,10 +26,6 @@ namespace PoppingBaloons
                 }
             }
             printArray();
-        }
-
-        ~baloonsState()
-        {
         }
 
         char pr(int a)

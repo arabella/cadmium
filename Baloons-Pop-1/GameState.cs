@@ -7,21 +7,17 @@ namespace PoppingBaloons
 {
     class GameState
     {
-        baloonsState currentBalloonState;
+        BaloonsState currentBalloonState;
         List<Tuple<string, int>> scoreboard;
 
         public GameState()
         {
-            currentBalloonState = new baloonsState();
+            currentBalloonState = new BaloonsState();
 
             scoreboard = new List<Tuple<string, int>>();
         }
 
-        ~GameState()
-        {
-        }
-
-        void displayScoreboard()
+        void DisplayScoreboard()
         {
             if (scoreboard.Count == 0)
                 Console.WriteLine("The scoreboard is empty");
@@ -33,7 +29,7 @@ namespace PoppingBaloons
             }
         }
 
-        public void executeCommand(string command)
+        public void ExecuteCommand(string command)
         {
             if (command == string.Empty || command == null)
             {
@@ -50,7 +46,7 @@ namespace PoppingBaloons
             }
             else if (command == "top")
             {
-                displayScoreboard();
+                DisplayScoreboard();
             }
             else
             {
@@ -64,7 +60,7 @@ namespace PoppingBaloons
 
                 if (first && second)
                 {
-                    sendCommand(row, col);//sends command to the baloonsState game holder
+                    SendCommand(row, col);//sends command to the baloonsState game holder
                 }
                 else
                 {
@@ -73,10 +69,10 @@ namespace PoppingBaloons
             }
         }
 
-        private void sendCommand(int row, int col)
+        private void SendCommand(int row, int col)
         {
             bool end = false;
-            if (row > baloonsState.Rows || col > baloonsState.Cols)
+            if (row > BaloonsState.Rows || col > BaloonsState.Cols)
             {
                 Console.WriteLine("Indexes too big");
             }
@@ -121,12 +117,12 @@ namespace PoppingBaloons
             {
                 return p1.Item2.CompareTo(p2.Item2);
             });
-            currentBalloonState = new baloonsState();
+            currentBalloonState = new BaloonsState();
         }
 
         private void restart()
         {
-            currentBalloonState = new baloonsState();
+            currentBalloonState = new BaloonsState();
         }
     }
 }
