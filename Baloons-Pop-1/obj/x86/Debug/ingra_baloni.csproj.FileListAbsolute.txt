@@ -1,0 +1,5 @@
+C:\Users\Vladimir\Desktop\vladofinta\Google Диск\Programirane\cadmium\Baloons-Pop-1\bin\Debug\PoppingBaloons.exe
+C:\Users\Vladimir\Desktop\vladofinta\Google Диск\Programirane\cadmium\Baloons-Pop-1\bin\Debug\PoppingBaloons.pdb
+C:\Users\Vladimir\Desktop\vladofinta\Google Диск\Programirane\cadmium\Baloons-Pop-1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Vladimir\Desktop\vladofinta\Google Диск\Programirane\cadmium\Baloons-Pop-1\obj\x86\Debug\PoppingBaloons.exe
+C:\Users\Vladimir\Desktop\vladofinta\Google Диск\Programirane\cadmium\Baloons-Pop-1\obj\x86\Debug\PoppingBaloons.pdb
