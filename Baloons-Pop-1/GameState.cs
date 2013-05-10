@@ -33,7 +33,7 @@ namespace PoppingBaloons
         {
             if (command == string.Empty || command == null)
             {
-                throw new ArgumentNullException("No command entered!");
+                Console.WriteLine("Unknown command!");
             }
             else if (command == "exit")
             {
@@ -55,16 +55,20 @@ namespace PoppingBaloons
 
                 string[] coordinates = command.Split(' ');
 
-                bool isRowNumber = int.TryParse(coordinates[0], out row);
-                bool isColNumber = int.TryParse(coordinates[1], out col);
-
-                if (isRowNumber && isColNumber)
+                if (coordinates.Length == 2)
                 {
-                    SendCommand(row, col);//sends command to the baloonsState game holder
+
+                    bool isRowNumber = int.TryParse(coordinates[0], out row);
+                    bool isColNumber = int.TryParse(coordinates[1], out col);
+
+                    if (isRowNumber && isColNumber)
+                    {
+                        SendCommand(row, col);//sends command to the baloonsState game holder
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Unknown Command");
+                    Messages.Messages();
                 }
             }
         }
@@ -75,6 +79,7 @@ namespace PoppingBaloons
             if (row > BaloonsState.Rows || col > BaloonsState.Cols)
             {
                 Console.WriteLine("Indexes too big");
+                DisplayScoreboard();
             }
             else
             {
