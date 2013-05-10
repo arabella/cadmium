@@ -195,7 +195,7 @@ namespace PoppingBaloons
                 Console.WriteLine("| ");
             }
             Console.WriteLine("    --------------------");
-            Console.WriteLine("Insert row and column or other command");
+            Messages.InsertCommand();
         }
     }
 }
