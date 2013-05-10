@@ -132,7 +132,7 @@ namespace PoppingBaloons
                 startX = x;
                 left++;
             }
-            DrawBalloonField();
+            //DrawBalloonField();
 
 
             while (right > y)
@@ -161,7 +161,7 @@ namespace PoppingBaloons
                 bottom--;
                 top--;
             }
-            DrawBalloonField();
+            // DrawBalloonField();
         }
 
         bool CheckForEnd()
