@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="BaloonsState.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="Messages.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

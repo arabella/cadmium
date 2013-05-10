@@ -27,9 +27,9 @@ namespace PoppingBaloons
             DrawBalloonField();
         }
 
-        char GetBalloon(int color)
+        char GetBalloon(int balloon)
         {
-            switch (color)
+            switch (balloon)
             {
                 case 1:
                     return '1';
@@ -54,7 +54,7 @@ namespace PoppingBaloons
             Console.WriteLine(BalloonField[x, y]);
             if (BalloonField[x, y] == 0)
             {
-                Console.WriteLine("Invalid Move! Can not pop a baloon at that place!!");
+                Messages.InvalidMove();
                 return false;
             }
             else
@@ -68,7 +68,7 @@ namespace PoppingBaloons
                 int left = y - 1;
                 int right = y + 1;
 
-                while (top > 0 && (BalloonField[top, y] == state))
+                while (top >= 0 && (BalloonField[top, y] == state))
                 {
                     BalloonField[top, y] = 0;
                     top--;

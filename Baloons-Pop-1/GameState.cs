@@ -88,10 +88,11 @@ namespace PoppingBaloons
 
             if (end)
             {
-                Console.WriteLine("Congratulations!!You popped all the baloons in" + currentBalloonState.TurnCount + "moves!");
+                Messages.Win(currentBalloonState.TurnCount);
+                UpdateScoreboard();
             }
             
-            //UpdateScoreboard();
+            
             
             //Restart();
         }
@@ -100,15 +101,14 @@ namespace PoppingBaloons
         {
             Action<int> add = count => //function to get the player name and add a tuple to the scoreboard
             {
-                Console.WriteLine("Enter Name:");
-                string s = Console.ReadLine();
-                Tuple<string, int> a = Tuple.Create<string, int>(s, count);
+                Console.Write("Enter Nickname: ");
+                string nickname = Console.ReadLine();
+                Tuple<string, int> a = Tuple.Create<string, int>(nickname, count);
                 scoreboard.Add(a);
             };
             if (scoreboard.Count < 5)
             {
                 add(currentBalloonState.TurnCount);
-                return;
             }
             else
             {
@@ -118,9 +118,9 @@ namespace PoppingBaloons
                     scoreboard.RemoveRange(4, 1);//if the new name replaces one of the old ones, remove the old one
                 }
             }
-            scoreboard.Sort(delegate(Tuple<string, int> p1, Tuple<string, int> p2)//re-sort the list
+            scoreboard.Sort(delegate(Tuple<string, int> playerOne, Tuple<string, int> playerTwo)//re-sort the list
             {
-                return p1.Item2.CompareTo(p2.Item2);
+                return playerOne.Item2.CompareTo(playerTwo.Item2);
             });
             currentBalloonState = new BaloonsState();
         }
