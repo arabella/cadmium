@@ -33,11 +33,11 @@ namespace PoppingBaloons
         {
             if (command == string.Empty || command == null)
             {
-                Console.WriteLine("Unknown command!");
+                Messages.UnknownCommand();
             }
             else if (command == "exit")
             {
-                Console.WriteLine("Thanks for playing!!");
+                Messages.Bye();   
                 Environment.Exit(0);
             }
             else if (command == "restart")
@@ -68,7 +68,7 @@ namespace PoppingBaloons
                 }
                 else
                 {
-                    Messages.Messages();
+                    Messages.UnknownCommand();
                 }
             }
         }
