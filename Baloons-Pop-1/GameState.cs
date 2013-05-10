@@ -37,7 +37,7 @@ namespace PoppingBaloons
             }
             else if (command == "exit")
             {
-                Messages.Bye();   
+                Messages.Bye();
                 Environment.Exit(0);
             }
             else if (command == "restart")
@@ -52,7 +52,7 @@ namespace PoppingBaloons
             {
                 //check input validation
                 int row, col;
-
+                command = command.Trim();
                 string[] coordinates = command.Split(' ');
 
                 if (coordinates.Length == 2)
@@ -78,8 +78,7 @@ namespace PoppingBaloons
             bool end = false;
             if (row > BaloonsState.Rows || col > BaloonsState.Cols)
             {
-                Console.WriteLine("Indexes too big");
-                DisplayScoreboard();
+                Messages.OutOfRange();
             }
             else
             {
@@ -91,10 +90,6 @@ namespace PoppingBaloons
                 Messages.Win(currentBalloonState.TurnCount);
                 UpdateScoreboard();
             }
-            
-            
-            
-            //Restart();
         }
 
         private void UpdateScoreboard()
