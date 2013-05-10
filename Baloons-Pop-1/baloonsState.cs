@@ -8,20 +8,20 @@ namespace PoppingBaloons
     class BaloonsState
     {
         int[,] BalloonField;
-        public int turnCount;//the turn counter
+        public int TurnCount { get; private set; }//the turn counter
         public readonly static int Rows = 6;
         public readonly static int Cols = 10;
         public BaloonsState()
         {
-            turnCount = 0;
+            TurnCount = 0;
 
             BalloonField = new int[Rows, Cols];
-            Random rnd = new Random();
+            Random randomInt = new Random();
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Cols; j++)
                 {
-                    BalloonField[i, j] = rnd.Next(1, 5);
+                    BalloonField[i, j] = randomInt.Next(1, 5);
                 }
             }
             DrawBalloonField();
@@ -59,15 +59,16 @@ namespace PoppingBaloons
             }
             else
             {
-                turnCount++;
+                TurnCount++;
                 int state = BalloonField[x, y];
                 BalloonField[x, y] = 0;
-                Console.WriteLine(BalloonField[x, y]);
+                //Console.WriteLine(BalloonField[x, y]);
                 int top = x - 1;
                 int bottom = x + 1;
                 int left = y - 1;
-                int right = y +1;
-                while (top > 0 && (BalloonField[top, y ] == state))
+                int right = y + 1;
+
+                while (top > 0 && (BalloonField[top, y] == state))
                 {
                     BalloonField[top, y] = 0;
                     top--;
@@ -78,21 +79,89 @@ namespace PoppingBaloons
                     BalloonField[bottom, y] = 0;
                     bottom++;
                 }
-                while (left > 0 && BalloonField[x, left] == state)
+                
+                // we have to return on the position of the last popped balloon
+                // because it's the first available free position /0/
+                // x
+                // x
+                // 1
+                bottom--;
+
+                while (left >= 0 && BalloonField[x, left] == state)
                 {
                     BalloonField[x, left] = 0;
                     left--;
                 }
+
+                // we have to return on the position of the last popped balloon
+                // 1 x x x
+                left++;
+
                 while (right < Cols && BalloonField[x, right] == state)
                 {
                     BalloonField[x, right] = 0;
+                    right++;
                 }
+                
+                // we have to return on the position of the last popped balloon
+                // x x x 1
+                right--;
 
+                MoveDownBalloons(x, y, left, right, top, bottom);
                 Console.WriteLine();
                 this.DrawBalloonField();
                 Console.WriteLine();
                 return CheckForEnd();
             }
+        }
+
+        private void MoveDownBalloons(int x, int y, int left, int right, int top, int bottom)
+        {
+            int startX = x;
+            int startY = y;
+
+            while (left < y)
+            {
+                while (startX >= 1 && BalloonField[startX - 1, left] != 0)
+                {
+
+                    BalloonField[startX, left] = BalloonField[startX - 1, left];
+                    BalloonField[startX - 1, left] = 0;
+                    startX--;
+                }
+                startX = x;
+                left++;
+            }
+            DrawBalloonField();
+
+
+            while (right > y)
+            {
+                while (startX >= 1 && BalloonField[startX - 1, right] != 0)
+                {
+
+                    BalloonField[startX, right] = BalloonField[startX - 1, right];
+                    BalloonField[startX - 1, right] = 0;
+                    startX--;
+                }
+                startX = x;
+                right--;
+            }
+            //DrawBalloonField();
+
+            while (top >= 0)
+            {
+                //while (startX >= 1 && BalloonField[startX - 1, right] != 0)
+                //{
+
+                BalloonField[bottom, startY] = BalloonField[top, startY];
+                BalloonField[top, startY] = 0;
+
+                //}
+                bottom--;
+                top--;
+            }
+            DrawBalloonField();
         }
 
         bool CheckForEnd()

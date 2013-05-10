@@ -83,7 +83,7 @@ namespace PoppingBaloons
 
             if (end)
             {
-                Console.WriteLine("Congratulations!!You popped all the baloons in" + currentBalloonState.turnCount + "moves!");
+                Console.WriteLine("Congratulations!!You popped all the baloons in" + currentBalloonState.TurnCount + "moves!");
             }
             
             //UpdateScoreboard();
@@ -102,14 +102,14 @@ namespace PoppingBaloons
             };
             if (scoreboard.Count < 5)
             {
-                add(currentBalloonState.turnCount);
+                add(currentBalloonState.TurnCount);
                 return;
             }
             else
             {
-                if (scoreboard.ElementAt<Tuple<string, int>>(4).Item2 >= currentBalloonState.turnCount)
+                if (scoreboard.ElementAt<Tuple<string, int>>(4).Item2 >= currentBalloonState.TurnCount)
                 {
-                    add(currentBalloonState.turnCount);
+                    add(currentBalloonState.TurnCount);
                     scoreboard.RemoveRange(4, 1);//if the new name replaces one of the old ones, remove the old one
                 }
             }
