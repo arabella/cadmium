@@ -9,8 +9,8 @@ namespace PoppingBaloons
     {
         int[,] BalloonField;
         public int TurnCount { get; private set; }//the turn counter
-        public readonly static int Rows = 6;
-        public readonly static int Cols = 10;
+        public readonly static int Rows = 2;
+        public readonly static int Cols = 2;
         public BaloonsState()
         {
             TurnCount = 0;
