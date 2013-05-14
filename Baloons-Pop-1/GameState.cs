@@ -19,14 +19,9 @@ namespace PoppingBaloons
 
         void DisplayScoreboard()
         {
-            if (scoreboard.Count == 0)
-                Console.WriteLine("The scoreboard is empty");
-            else
-            {
-                Console.WriteLine("Top performers:");
-                Action<Tuple<string, int>> print = elem => { Console.WriteLine(elem.Item1 + "  " + elem.Item2.ToString() + " turns "); };
-                scoreboard.ForEach(print);
-            }
+            var scores = ScoreBoard.ReadScoresFromFile("ScoreEntries.txt");
+            scores.ForEach(s => Console.WriteLine(s));
+            Console.ReadKey();
         }
 
         public void ExecuteCommand(string command)

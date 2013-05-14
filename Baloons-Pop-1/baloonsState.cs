@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PoppingBaloons
 {
-    class BaloonsState
+    public class BaloonsState
     {
         int[,] BalloonField;
         public int TurnCount { get; private set; }//the turn counter
@@ -164,7 +164,7 @@ namespace PoppingBaloons
             //DrawBalloonField();
         }
 
-        bool CheckForEnd()
+        public bool CheckForEnd()
         {
             foreach (var balloon in BalloonField)
             {
