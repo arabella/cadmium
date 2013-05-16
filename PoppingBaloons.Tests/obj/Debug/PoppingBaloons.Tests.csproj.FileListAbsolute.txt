@@ -1,0 +1,7 @@
+D:\GitHub\cadmium\PoppingBaloons.Tests\obj\Debug\PoppingBaloons.Tests.csprojResolveAssemblyReference.cache
+D:\GitHub\cadmium\PoppingBaloons.Tests\bin\Debug\PoppingBaloons.Tests.dll
+D:\GitHub\cadmium\PoppingBaloons.Tests\bin\Debug\PoppingBaloons.Tests.pdb
+D:\GitHub\cadmium\PoppingBaloons.Tests\bin\Debug\PoppingBaloons.exe
+D:\GitHub\cadmium\PoppingBaloons.Tests\bin\Debug\PoppingBaloons.pdb
+D:\GitHub\cadmium\PoppingBaloons.Tests\obj\Debug\PoppingBaloons.Tests.dll
+D:\GitHub\cadmium\PoppingBaloons.Tests\obj\Debug\PoppingBaloons.Tests.pdb
