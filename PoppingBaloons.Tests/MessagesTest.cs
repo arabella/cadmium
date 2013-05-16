@@ -79,16 +79,16 @@ namespace PoppingBaloons.Tests
             }
         }
 
-        //[TestMethod]
-        //public void PrintMessagesWin()
-        //{
-        //    using (StringWriter sw = new StringWriter())
-        //    {
-        //        Console.SetOut(sw);
-        //        Messages.Win(3);
-        //        string expected = string.Format("Congratulations!!You popped all the baloons in {0} moves!\r\n", Environment.NewLine);
-        //        Assert.AreEqual<string>(expected, sw.ToString());
-        //    }
-        //}
+        [TestMethod]
+        public void PrintMessagesWin()
+        {
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                Messages.Win(3);
+                string expected = string.Format("Congratulations!!You popped all the baloons in 3 moves!\r\n", Environment.NewLine);
+                Assert.AreEqual<string>(expected, sw.ToString());
+            }
+        }
     }
 }
