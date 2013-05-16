@@ -8,3 +8,8 @@ C:\Users\Slavi\Desktop\cadmium\cadmium\Baloons-Pop-1\obj\x86\Debug\PoppingBaloon
 C:\Users\Slavi\Desktop\cadmium\cadmium\Baloons-Pop-1\bin\Debug\PoppingBaloons.exe
 C:\Users\Slavi\Desktop\cadmium\cadmium\Baloons-Pop-1\bin\Debug\PoppingBaloons.pdb
 C:\Users\Slavi\Desktop\cadmium\cadmium\Baloons-Pop-1\obj\x86\Debug\ingra_baloni.csprojResolveAssemblyReference.cache
+D:\GitHub\cadmium\Baloons-Pop-1\obj\x86\Debug\PoppingBaloons.exe
+D:\GitHub\cadmium\Baloons-Pop-1\obj\x86\Debug\PoppingBaloons.pdb
+D:\GitHub\cadmium\Baloons-Pop-1\bin\Debug\PoppingBaloons.exe
+D:\GitHub\cadmium\Baloons-Pop-1\bin\Debug\PoppingBaloons.pdb
+D:\GitHub\cadmium\Baloons-Pop-1\obj\x86\Debug\ingra_baloni.csprojResolveAssemblyReference.cache
