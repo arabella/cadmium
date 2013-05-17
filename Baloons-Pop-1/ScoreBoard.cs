@@ -16,6 +16,7 @@ namespace PoppingBaloons
             }
         }
 
+        /*
         public static ScoreEntry GetPlayerdata()
         {
             string data = string.Empty;
@@ -24,7 +25,7 @@ namespace PoppingBaloons
 
             ScoreEntry entry = new ScoreEntry(data);
             return entry;
-        }
+        }*/
 
         internal static List<ScoreEntry> ReadScoresFromFile()
         {

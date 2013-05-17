@@ -9,9 +9,12 @@ namespace PoppingBaloons
     {
         //int[,] currentBalloonField;
         BalloonField currentBalloonField;
+
         public int TurnCount { get; private set; }//the turn counter
+
         public static int Rows;
-        public  static int Cols;
+        public static int Cols;
+
         public BalloonState(int rows, int cols)
         {
             TurnCount = 0;
@@ -117,7 +120,6 @@ namespace PoppingBaloons
             {
                 while (startX >= 1 && currentBalloonField[startX - 1, left] != 0)
                 {
-
                     currentBalloonField[startX, left] = currentBalloonField[startX - 1, left];
                     currentBalloonField[startX - 1, left] = 0;
                     startX--;
@@ -127,12 +129,10 @@ namespace PoppingBaloons
             }
             //DrawBalloonField();
 
-
             while (right > y)
             {
                 while (startX >= 1 && currentBalloonField[startX - 1, right] != 0)
                 {
-
                     currentBalloonField[startX, right] = currentBalloonField[startX - 1, right];
                     currentBalloonField[startX - 1, right] = 0;
                     startX--;
@@ -146,7 +146,6 @@ namespace PoppingBaloons
             {
                 //while (startX >= 1 && BalloonField[startX - 1, right] != 0)
                 //{
-
                 currentBalloonField[bottom, startY] = currentBalloonField[top, startY];
                 currentBalloonField[top, startY] = 0;
 
@@ -163,10 +162,10 @@ namespace PoppingBaloons
             {
                 for (int j = 0; j < currentBalloonField.Cols; j++)
                 {
-                    if (currentBalloonField[i,j] != 0)
+                    if (currentBalloonField[i, j] != 0)
                     {
                         return false;
-                    }     
+                    }
                 }
             }
 
