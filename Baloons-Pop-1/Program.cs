@@ -13,6 +13,8 @@ namespace PoppingBaloons
             {
                 game.ExecuteCommand(Console.ReadLine());
             }
+            //BalloonField myField = new BalloonField(6, 6);
+            //Console.WriteLine(myField[4,4]);
         }
     }
 }
