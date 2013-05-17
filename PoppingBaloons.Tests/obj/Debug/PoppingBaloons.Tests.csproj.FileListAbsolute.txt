@@ -5,3 +5,10 @@ D:\GitHub\cadmium\PoppingBaloons.Tests\bin\Debug\PoppingBaloons.exe
 D:\GitHub\cadmium\PoppingBaloons.Tests\bin\Debug\PoppingBaloons.pdb
 D:\GitHub\cadmium\PoppingBaloons.Tests\obj\Debug\PoppingBaloons.Tests.dll
 D:\GitHub\cadmium\PoppingBaloons.Tests\obj\Debug\PoppingBaloons.Tests.pdb
+C:\Users\Slavi\Desktop\cadmium\cadmium\PoppingBaloons.Tests\bin\Debug\PoppingBaloons.Tests.dll
+C:\Users\Slavi\Desktop\cadmium\cadmium\PoppingBaloons.Tests\bin\Debug\PoppingBaloons.Tests.pdb
+C:\Users\Slavi\Desktop\cadmium\cadmium\PoppingBaloons.Tests\bin\Debug\PoppingBaloons.exe
+C:\Users\Slavi\Desktop\cadmium\cadmium\PoppingBaloons.Tests\bin\Debug\PoppingBaloons.pdb
+C:\Users\Slavi\Desktop\cadmium\cadmium\PoppingBaloons.Tests\obj\Debug\PoppingBaloons.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Slavi\Desktop\cadmium\cadmium\PoppingBaloons.Tests\obj\Debug\PoppingBaloons.Tests.dll
+C:\Users\Slavi\Desktop\cadmium\cadmium\PoppingBaloons.Tests\obj\Debug\PoppingBaloons.Tests.pdb

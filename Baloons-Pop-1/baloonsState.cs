@@ -1,31 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PoppingBaloons
+﻿namespace PoppingBaloons
 {
-    public class BaloonsState
-    {
-        int[,] BalloonField;
-        public int TurnCount { get; private set; }//the turn counter
-        public readonly static int Rows = 2;
-        public readonly static int Cols = 2;
-        public BaloonsState()
-        {
-            TurnCount = 0;
+    using System;
+    using System.Linq;
 
-            BalloonField = new int[Rows, Cols];
-            Random randomInt = new Random();
-            for (int i = 0; i < Rows; i++)
-            {
-                for (int j = 0; j < Cols; j++)
-                {
-                    BalloonField[i, j] = randomInt.Next(1, 5);
-                }
-            }
-            DrawBalloonField();
+    public class BalloonState
+    { 
+        public BalloonState(int rows, int cols)
+        {
+            this.TurnCount = 0;
+            this.currentBalloonField = new BalloonField(rows, cols);
+            Rows = rows;
+            Cols = cols;
+            this.DrawBalloonField();
         }
+
+        public int TurnCount { get; private set; }// the turn counter
+
+        public static int Rows;
+
+        public static int Cols;
+
+        // int[,] currentBalloonField;
+        BalloonField currentBalloonField;
 
         char GetBalloon(int balloon)
         {
@@ -50,9 +46,8 @@ namespace PoppingBaloons
 
         public bool PopBaloon(int x, int y)
         {
-            //changes the game state and returns boolean,indicating wheater the game is over
-            Console.WriteLine(BalloonField[x, y]);
-            if (BalloonField[x, y] == 0)
+            Console.WriteLine(this.currentBalloonField[x, y]);
+            if (this.currentBalloonField[x, y] == 0)
             {
                 Messages.InvalidMove();
                 return false;
@@ -60,23 +55,23 @@ namespace PoppingBaloons
             else
             {
                 TurnCount++;
-                int state = BalloonField[x, y];
-                BalloonField[x, y] = 0;
-                //Console.WriteLine(BalloonField[x, y]);
+                int state = this.currentBalloonField[x, y];
+                this.currentBalloonField[x, y] = 0;
+                // Console.WriteLine(BalloonField[x, y]);
                 int top = x - 1;
                 int bottom = x + 1;
                 int left = y - 1;
                 int right = y + 1;
 
-                while (top >= 0 && (BalloonField[top, y] == state))
+                while (top >= 0 && (this.currentBalloonField[top, y] == state))
                 {
-                    BalloonField[top, y] = 0;
+                    this.currentBalloonField[top, y] = 0;
                     top--;
                 }
 
-                while (bottom < Rows && BalloonField[bottom, y] == state)
+                while (bottom < Rows && this.currentBalloonField[bottom, y] == state)
                 {
-                    BalloonField[bottom, y] = 0;
+                    this.currentBalloonField[bottom, y] = 0;
                     bottom++;
                 }
                 
@@ -87,9 +82,9 @@ namespace PoppingBaloons
                 // 1
                 bottom--;
 
-                while (left >= 0 && BalloonField[x, left] == state)
+                while (left >= 0 && this.currentBalloonField[x, left] == state)
                 {
-                    BalloonField[x, left] = 0;
+                    this.currentBalloonField[x, left] = 0;
                     left--;
                 }
 
@@ -97,9 +92,9 @@ namespace PoppingBaloons
                 // 1 x x x
                 left++;
 
-                while (right < Cols && BalloonField[x, right] == state)
+                while (right < Cols && this.currentBalloonField[x, right] == state)
                 {
-                    BalloonField[x, right] = 0;
+                    this.currentBalloonField[x, right] = 0;
                     right++;
                 }
                 
@@ -107,72 +102,27 @@ namespace PoppingBaloons
                 // x x x 1
                 right--;
 
-                MoveDownBalloons(x, y, left, right, top, bottom);
+                this.MoveDownBalloons(x, y, left, right, top, bottom);
                 Console.WriteLine();
                 this.DrawBalloonField();
                 Console.WriteLine();
-                return CheckForEnd();
+                return this.CheckForEnd();
             }
-        }
-
-        private void MoveDownBalloons(int x, int y, int left, int right, int top, int bottom)
-        {
-            int startX = x;
-            int startY = y;
-
-            while (left < y)
-            {
-                while (startX >= 1 && BalloonField[startX - 1, left] != 0)
-                {
-
-                    BalloonField[startX, left] = BalloonField[startX - 1, left];
-                    BalloonField[startX - 1, left] = 0;
-                    startX--;
-                }
-                startX = x;
-                left++;
-            }
-            //DrawBalloonField();
-
-
-            while (right > y)
-            {
-                while (startX >= 1 && BalloonField[startX - 1, right] != 0)
-                {
-
-                    BalloonField[startX, right] = BalloonField[startX - 1, right];
-                    BalloonField[startX - 1, right] = 0;
-                    startX--;
-                }
-                startX = x;
-                right--;
-            }
-            //DrawBalloonField();
-
-            while (top >= 0)
-            {
-                //while (startX >= 1 && BalloonField[startX - 1, right] != 0)
-                //{
-
-                BalloonField[bottom, startY] = BalloonField[top, startY];
-                BalloonField[top, startY] = 0;
-
-                //}
-                bottom--;
-                top--;
-            }
-            //DrawBalloonField();
         }
 
         public bool CheckForEnd()
         {
-            foreach (var balloon in BalloonField)
+            for (int i = 0; i < this.currentBalloonField.Rows; i++)
             {
-                if (balloon != 0)
+                for (int j = 0; j < this.currentBalloonField.Cols; j++)
                 {
-                    return false;
+                    if (this.currentBalloonField[i, j] != 0)
+                    {
+                        return false;
+                    }     
                 }
             }
+
             return true;
         }
 
@@ -190,12 +140,60 @@ namespace PoppingBaloons
                 Console.Write(i.ToString() + " | ");
                 for (int j = 0; j < Cols; j++)
                 {
-                    Console.Write(GetBalloon(BalloonField[i, j]) + " ");
+                    Console.Write(GetBalloon(this.currentBalloonField[i, j]) + " ");
                 }
                 Console.WriteLine("| ");
             }
             Console.WriteLine("    --------------------");
             Messages.InsertCommand();
+        }
+        private void MoveDownBalloons(int x, int y, int left, int right, int top, int bottom)
+        {
+            int startX = x;
+            int startY = y;
+
+            while (left < y)
+            {
+                while (startX >= 1 && this.currentBalloonField[startX - 1, left] != 0)
+                {
+
+                    this.currentBalloonField[startX, left] = this.currentBalloonField[startX - 1, left];
+                    this.currentBalloonField[startX - 1, left] = 0;
+                    startX--;
+                }
+                startX = x;
+                left++;
+            }
+            // DrawBalloonField();
+
+
+            while (right > y)
+            {
+                while (startX >= 1 && this.currentBalloonField[startX - 1, right] != 0)
+                {
+
+                    this.currentBalloonField[startX, right] = this.currentBalloonField[startX - 1, right];
+                    this.currentBalloonField[startX - 1, right] = 0;
+                    startX--;
+                }
+                startX = x;
+                right--;
+            }
+            // DrawBalloonField();
+
+            while (top >= 0)
+            {
+                // while (startX >= 1 && BalloonField[startX - 1, right] != 0)
+                // {
+
+                this.currentBalloonField[bottom, startY] = this.currentBalloonField[top, startY];
+                this.currentBalloonField[top, startY] = 0;
+
+                // }
+                bottom--;
+                top--;
+            }
+            // DrawBalloonField();
         }
     }
 }

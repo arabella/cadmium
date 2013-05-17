@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-
-namespace PoppingBaloons
+﻿namespace PoppingBaloons
 {
-    class Program
+    using System;
+    using System.Linq;
+
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Messages.Welcome();
             GameState game = new GameState();
@@ -13,6 +13,8 @@ namespace PoppingBaloons
             {
                 game.ExecuteCommand(Console.ReadLine());
             }
+            // BalloonField myField = new BalloonField(6, 6);
+            // Console.WriteLine(myField[4,4]);
         }
     }
 }

@@ -1,27 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PoppingBaloons
+﻿namespace PoppingBaloons
 {
-    class GameState
+    using System;
+    using System.Linq;
+
+    public class GameState
     {
-        BaloonsState currentBalloonState;
-        List<Tuple<string, int>> scoreboard;
+        BalloonState currentBalloonState;
 
         public GameState()
         {
-            currentBalloonState = new BaloonsState();
-
-            scoreboard = new List<Tuple<string, int>>();
-        }
-
-        void DisplayScoreboard()
-        {
-            var scores = ScoreBoard.ReadScoresFromFile("ScoreEntries.txt");
-            scores.ForEach(s => Console.WriteLine(s));
-            Console.ReadKey();
+            this.currentBalloonState = new BalloonState(2, 2);
         }
 
         public void ExecuteCommand(string command)
@@ -37,28 +25,27 @@ namespace PoppingBaloons
             }
             else if (command == "restart")
             {
-                Restart();
+                this.Restart();
             }
             else if (command == "top")
             {
-                DisplayScoreboard();
+                this.DisplayScoreboard();
             }
             else
             {
-                //check input validation
+                // check input validation
                 int row, col;
                 command = command.Trim();
                 string[] coordinates = command.Split(' ');
 
                 if (coordinates.Length == 2)
                 {
-
                     bool isRowNumber = int.TryParse(coordinates[0], out row);
                     bool isColNumber = int.TryParse(coordinates[1], out col);
 
                     if (isRowNumber && isColNumber)
                     {
-                        SendCommand(row, col);//sends command to the baloonsState game holder
+                        this.SendCommand(row, col); // sends command to the baloonsState game holder
                     }
                 }
                 else
@@ -68,56 +55,45 @@ namespace PoppingBaloons
             }
         }
 
+        public void DisplayScoreboard()
+        {
+            var scores = ScoreBoard.ReadScoresFromFile();
+            scores.ForEach(s => Console.WriteLine(s));
+            // Console.ReadKey();
+        }
+
         private void SendCommand(int row, int col)
         {
             bool end = false;
-            if (row > BaloonsState.Rows || col > BaloonsState.Cols)
+            if (row > BalloonState.Rows || col > BalloonState.Cols)
             {
                 Messages.OutOfRange();
             }
             else
             {
-                end = currentBalloonState.PopBaloon(row, col);//if this turn ends the game, try to update the scoreboard
+                end = this.currentBalloonState.PopBaloon(row, col); // if this turn ends the game, try to update the scoreboard
             }
 
             if (end)
             {
-                Messages.Win(currentBalloonState.TurnCount);
-                UpdateScoreboard();
+                Messages.Win(this.currentBalloonState.TurnCount);
+                this.UpdateScoreboard();
             }
         }
 
         private void UpdateScoreboard()
-        {
-            Action<int> add = count => //function to get the player name and add a tuple to the scoreboard
-            {
+        {         
                 Console.Write("Enter Nickname: ");
                 string nickname = Console.ReadLine();
-                Tuple<string, int> a = Tuple.Create<string, int>(nickname, count);
-                scoreboard.Add(a);
-            };
-            if (scoreboard.Count < 5)
-            {
-                add(currentBalloonState.TurnCount);
-            }
-            else
-            {
-                if (scoreboard.ElementAt<Tuple<string, int>>(4).Item2 >= currentBalloonState.TurnCount)
-                {
-                    add(currentBalloonState.TurnCount);
-                    scoreboard.RemoveRange(4, 1);//if the new name replaces one of the old ones, remove the old one
-                }
-            }
-            scoreboard.Sort(delegate(Tuple<string, int> playerOne, Tuple<string, int> playerTwo)//re-sort the list
-            {
-                return playerOne.Item2.CompareTo(playerTwo.Item2);
-            });
-            currentBalloonState = new BaloonsState();
+                ScoreEntry currentScore = new ScoreEntry(nickname + " " + this.currentBalloonState.TurnCount);
+                ScoreBoard.WriteScoresToFile(currentScore);
+                
+            this.currentBalloonState = new BalloonState(2, 2);
         }
 
         private void Restart()
         {
-            currentBalloonState = new BaloonsState();
+            this.currentBalloonState = new BalloonState(2, 2);
         }
     }
 }

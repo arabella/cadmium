@@ -1,14 +1,10 @@
-﻿using System;
-using System.Linq;
-
-namespace PoppingBaloons
+﻿namespace PoppingBaloons
 {
+    using System;
+    using System.Linq;
+
     public class ScoreEntry
     {
-        public string PlayerName { get; set; }
-        public int Position { get; set; }
-        public int Score { get; set; }
-
         public ScoreEntry(string data)
         {
             var entryData = data.Split(' ');
@@ -31,9 +27,15 @@ namespace PoppingBaloons
             }
         }
 
+        public string PlayerName { get; set; }
+
+        public int Position { get; set; }
+
+        public int Score { get; set; }
+
         public override string ToString()
         {
-            return string.Format("{0}. {1}: {2}", this.Position, this.PlayerName, this.Score);
+            return string.Format("{0}. {1} {2}", this.Position, this.PlayerName, this.Score);
         }
     }
 }

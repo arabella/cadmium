@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PoppingBaloons
+﻿namespace PoppingBaloons
 {
+    using System;
+    using System.Linq;
+
     public class Messages
     {
         public static void Welcome()

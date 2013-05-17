@@ -1,34 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-
-namespace PoppingBaloons
+﻿namespace PoppingBaloons
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+
     public class ScoreBoard
     {
-        public  static void WriteScoresToFile(string filePath)
-        {
-            bool gameOver = true;
-            if (gameOver)
-            {
-                GetPlayerdata(); 
+        private static string filePath = "ScoreEntries.txt";
 
-                // TODO write to txt file
+        public static void WriteScoresToFile(ScoreEntry currentScore)
+        {
+            using (StreamWriter destination = new StreamWriter(filePath, true))
+            {
+                destination.WriteLine(currentScore);
             }
         }
-
-        public  static ScoreEntry GetPlayerdata()
-        {
-            string data = string.Empty;
-           
-            //TODO get name and turns count
-
-            ScoreEntry entry = new ScoreEntry(data);
-            return entry;
-        }
-
-        internal static List<ScoreEntry> ReadScoresFromFile(string filePath)
+/*
+       public static ScoreEntry GetPlayerdata()
+       {
+           string data = string.Empty;
+     
+           // TODO get name and turns count
+     
+           ScoreEntry entry = new ScoreEntry(data);
+           return entry;
+       }
+        */
+        internal static List<ScoreEntry> ReadScoresFromFile()
         {
             var scores = new List<ScoreEntry>();
 
@@ -38,10 +37,10 @@ namespace PoppingBaloons
                 while (!myReader.EndOfStream)
                 {
                     line = myReader.ReadLine();
-
+                    string[] parsedLine = line.Split();
                     try
                     {
-                        scores.Add(new ScoreEntry(line));
+                        scores.Add(new ScoreEntry(parsedLine[1] + " " + parsedLine[2]));
                     }
                     catch (ArgumentException ex)
                     {
