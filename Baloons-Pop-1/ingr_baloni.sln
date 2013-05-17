@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ingra_baloni", "ingra_baloni.csproj", "{8940EF8B-A71D-4F14-8888-1AAE9ACEFDC6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoppingBaloons.Tests", "..\PoppingBaloons.Tests\PoppingBaloons.Tests.csproj", "{C2BD0FAF-F3F3-4D5E-92F8-AB0853645F08}"

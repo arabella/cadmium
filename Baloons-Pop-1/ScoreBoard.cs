@@ -7,18 +7,16 @@ namespace PoppingBaloons
 {
     public class ScoreBoard
     {
-        public  static void WriteScoresToFile(string filePath)
+        private static string filePath = "ScoreEntries.txt";
+        public  static void WriteScoresToFile( ScoreEntry currentScore)
         {
-            bool gameOver = true;
-            if (gameOver)
+            using (StreamWriter destination = new StreamWriter(filePath, true))
             {
-                GetPlayerdata(); 
-
-                // TODO write to txt file
+                destination.WriteLine(currentScore);
             }
         }
 
-        public  static ScoreEntry GetPlayerdata()
+        public static ScoreEntry GetPlayerdata()
         {
             string data = string.Empty;
            
@@ -28,7 +26,7 @@ namespace PoppingBaloons
             return entry;
         }
 
-        internal static List<ScoreEntry> ReadScoresFromFile(string filePath)
+        internal static List<ScoreEntry> ReadScoresFromFile()
         {
             var scores = new List<ScoreEntry>();
 
@@ -38,10 +36,10 @@ namespace PoppingBaloons
                 while (!myReader.EndOfStream)
                 {
                     line = myReader.ReadLine();
-
+                    string[] parsedLine = line.Split();
                     try
                     {
-                        scores.Add(new ScoreEntry(line));
+                        scores.Add(new ScoreEntry(parsedLine[1]+" "+parsedLine[2]));
                     }
                     catch (ArgumentException ex)
                     {

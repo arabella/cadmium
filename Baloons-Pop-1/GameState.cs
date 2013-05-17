@@ -7,21 +7,19 @@ namespace PoppingBaloons
 {
     class GameState
     {
-        BaloonsState currentBalloonState;
-        List<Tuple<string, int>> scoreboard;
+        BalloonState currentBalloonState;
 
         public GameState()
         {
-            currentBalloonState = new BaloonsState();
+            currentBalloonState = new BalloonState(2,2);
 
-            scoreboard = new List<Tuple<string, int>>();
         }
 
         void DisplayScoreboard()
         {
-            var scores = ScoreBoard.ReadScoresFromFile("ScoreEntries.txt");
+            var scores = ScoreBoard.ReadScoresFromFile();
             scores.ForEach(s => Console.WriteLine(s));
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         public void ExecuteCommand(string command)
@@ -71,7 +69,7 @@ namespace PoppingBaloons
         private void SendCommand(int row, int col)
         {
             bool end = false;
-            if (row > BaloonsState.Rows || col > BaloonsState.Cols)
+            if (row > BalloonState.Rows || col > BalloonState.Cols)
             {
                 Messages.OutOfRange();
             }
@@ -89,35 +87,19 @@ namespace PoppingBaloons
 
         private void UpdateScoreboard()
         {
-            Action<int> add = count => //function to get the player name and add a tuple to the scoreboard
-            {
+            
                 Console.Write("Enter Nickname: ");
                 string nickname = Console.ReadLine();
-                Tuple<string, int> a = Tuple.Create<string, int>(nickname, count);
-                scoreboard.Add(a);
-            };
-            if (scoreboard.Count < 5)
-            {
-                add(currentBalloonState.TurnCount);
-            }
-            else
-            {
-                if (scoreboard.ElementAt<Tuple<string, int>>(4).Item2 >= currentBalloonState.TurnCount)
-                {
-                    add(currentBalloonState.TurnCount);
-                    scoreboard.RemoveRange(4, 1);//if the new name replaces one of the old ones, remove the old one
-                }
-            }
-            scoreboard.Sort(delegate(Tuple<string, int> playerOne, Tuple<string, int> playerTwo)//re-sort the list
-            {
-                return playerOne.Item2.CompareTo(playerTwo.Item2);
-            });
-            currentBalloonState = new BaloonsState();
+                ScoreEntry currentScore = new ScoreEntry(nickname+" "+currentBalloonState.TurnCount);
+                ScoreBoard.WriteScoresToFile(currentScore);
+                
+            
+            currentBalloonState = new BalloonState(2,2);
         }
 
         private void Restart()
         {
-            currentBalloonState = new BaloonsState();
+            currentBalloonState = new BalloonState(2,2);
         }
     }
 }
