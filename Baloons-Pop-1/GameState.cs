@@ -9,7 +9,19 @@
 
         public GameState()
         {
+<<<<<<< HEAD
             this.currentBalloonState = new BalloonState(2, 2);
+=======
+            currentBalloonState = new BalloonState(2,2);
+
+        }
+
+        void DisplayScoreboard()
+        {
+            var scores = ScoreBoard.ReadScoresFromFile();
+            scores.ForEach(s => Console.WriteLine(s));
+            //Console.ReadKey();
+>>>>>>> 307fc8727fe8a2d43c046d68ae12fa593515fa1f
         }
 
         public void ExecuteCommand(string command)
@@ -82,6 +94,7 @@
         }
 
         private void UpdateScoreboard()
+<<<<<<< HEAD
         {         
                 Console.Write("Enter Nickname: ");
                 string nickname = Console.ReadLine();
@@ -89,11 +102,26 @@
                 ScoreBoard.WriteScoresToFile(currentScore);
                 
             this.currentBalloonState = new BalloonState(2, 2);
+=======
+        {
+            
+                Console.Write("Enter Nickname: ");
+                string nickname = Console.ReadLine();
+                ScoreEntry currentScore = new ScoreEntry(nickname+" "+currentBalloonState.TurnCount);
+                ScoreBoard.WriteScoresToFile(currentScore);
+                
+            
+            currentBalloonState = new BalloonState(2,2);
+>>>>>>> 307fc8727fe8a2d43c046d68ae12fa593515fa1f
         }
 
         private void Restart()
         {
+<<<<<<< HEAD
             this.currentBalloonState = new BalloonState(2, 2);
+=======
+            currentBalloonState = new BalloonState(2,2);
+>>>>>>> 307fc8727fe8a2d43c046d68ae12fa593515fa1f
         }
     }
 }
